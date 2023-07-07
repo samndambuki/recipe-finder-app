@@ -58,18 +58,18 @@
   gap: 1rem;
 }
 
-.inputs input{
-    padding: .5rem;
-    background-color: #C3C6C5;
-    border: none;
-    border-radius: 10px;
+.inputs input {
+  padding: 0.5rem;
+  background-color: #c3c6c5;
+  border: none;
+  border-radius: 10px;
 }
 
-.signUp button{
-    background-color: #3ab399;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: .8rem;
-    margin-top: 2rem;
+.signUp button {
+  background-color: #3ab399;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.8rem;
+  margin-top: 2rem;
 }
