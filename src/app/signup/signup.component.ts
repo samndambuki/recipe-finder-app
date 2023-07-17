@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DataService } from '../services/data.service';
+import { User } from '../interfaces/User';
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +21,8 @@ export class SignupComponent {
   constructor(private http: HttpClient,private dataService:DataService) {}
 
   signUpUser(): void {
-    const newUser = {
+    const newUser:User = {
+      id:0,
       name: this.name,
       email: this.email,
       password: this.password,

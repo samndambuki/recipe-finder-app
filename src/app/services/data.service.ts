@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { User } from "../interfaces/User";
 
 @Injectable({
     providedIn:'root'
@@ -11,7 +12,7 @@ export class DataService{
 
     constructor(private http:HttpClient){}
 
-    createUser(user:any):Observable<any>{
-        return this.http.post(`${this.baseUrl}/users`,user);
+    createUser(user:User):Observable<User>{
+        return this.http.post<User>(`${this.baseUrl}/users`,user);
     }
 }
