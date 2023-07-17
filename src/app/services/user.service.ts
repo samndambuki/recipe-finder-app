@@ -7,7 +7,7 @@ import { User } from "../interfaces/User";
     providedIn:'root'
 })
 
-export class DataService{
+export class UserService{
     private baseUrl = 'http://localhost:3000';
 
     constructor(private http:HttpClient){}

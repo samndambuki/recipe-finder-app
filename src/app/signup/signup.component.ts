@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { DataService } from '../services/data.service';
 import { User } from '../interfaces/User';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +18,7 @@ export class SignupComponent {
   email!: string;
   password!: string;
 
-  constructor(private http: HttpClient,private dataService:DataService) {}
+  constructor(private http: HttpClient,private userService:UserService) {}
 
   signUpUser(): void {
     const newUser:User = {
@@ -28,7 +28,7 @@ export class SignupComponent {
       password: this.password,
     };
 
-    this.dataService.createUser(newUser).subscribe((response) => {
+    this.userService.createUser(newUser).subscribe((response) => {
       console.log('User signed up successfully', response);
 
       localStorage.setItem('credentials', JSON.stringify(newUser));
