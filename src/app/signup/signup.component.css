@@ -29,12 +29,23 @@
   border-radius: 10px;
 }
 
+.signIn:hover{
+  background-color: white;
+}
+
 .signIn button {
   border: none;
   color: white;
   background-color: #3ab399;
   font-weight: bold;
 }
+
+.signIn button:hover{
+  background-color: white;
+  color: #3ab399;
+}
+
+
 
 .rightMenuBar {
   display: flex;
@@ -72,4 +83,10 @@
   border-radius: 10px;
   padding: 0.8rem;
   margin-top: 2rem;
+}
+
+.signUp button:hover{
+  border: 1px solid #3ab399 ;
+  background-color: white;
+  color: #3ab399;
 }

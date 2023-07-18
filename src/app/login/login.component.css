@@ -34,11 +34,22 @@
   margin-top: 1rem;
 }
 
+
+.signUp:hover{
+  background-color: white;
+}
+
+
 .signUp button {
   border: none;
   color: white;
   background-color: #3ab399;
   font-weight: bold;
+}
+
+.signUp button:hover{
+  background-color: white;
+  color: #3ab399;
 }
 
 .rightMenuBar {
@@ -86,4 +97,15 @@
   border: none;
   border-radius: 10px;
   padding: 0.8rem;
+}
+
+
+.signIn button:hover{
+  border: 1px solid #3ab399 ;
+  background-color: white;
+  color: #3ab399;
+}
+
+.error{
+  color: red;
 }

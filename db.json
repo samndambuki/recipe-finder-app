@@ -56,6 +56,51 @@
     },
     {
       "id": 12
+    },
+    {
+      "id": 13,
+      "name": "dickson",
+      "email": "dickson@gmail.com",
+      "password": "12345"
+    },
+    {
+      "id": 14
+    },
+    {
+      "id": 15
+    },
+    {
+      "id": 16
+    },
+    {
+      "id": 17
+    },
+    {
+      "id": 18
+    },
+    {
+      "id": 19
+    },
+    {
+      "id": 20
+    },
+    {
+      "id": 21
+    },
+    {
+      "id": 22
+    },
+    {
+      "id": 23,
+      "name": "ndambuki",
+      "email": "ndambuki@gmail.com",
+      "password": "12345"
+    },
+    {
+      "id": 24,
+      "name": "jonte",
+      "email": "jonte@gmail.com",
+      "password": "12345"
     }
   ]
 }
