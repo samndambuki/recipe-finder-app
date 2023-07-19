@@ -40,6 +40,7 @@ export class LoginComponent {
     //takes two functions as an argument.
     // one to handle the success case and the other to handle errors
     this.userService.getUserByEmail(this.email).subscribe((user)=>{
+      console.log(user)
 
       //if user is found and the password matches the entered passsword
       if(user && user.password === this.password){
