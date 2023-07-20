@@ -1,0 +1,145 @@
+.navbar {
+  height: 20vh;
+  border: 1px solid rgb(217, 217, 217);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.planlife {
+  width: 22.3%;
+  background-color: rgb(15, 15, 45);
+  font-size: 1rem;
+  padding: 1rem;
+  margin-left: -0.6rem;
+}
+
+.panlifeparagraph {
+  color: white;
+}
+
+.panlifeparagraph span {
+  color: #3ab399;
+}
+
+.heathymeals {
+  color: rgb(217, 217, 217);
+}
+
+.createNew {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3ab399;
+  color: white;
+}
+
+.discover {
+  display: flex;
+  gap: 1rem;
+}
+
+.hello {
+  font-size: 2rem;
+}
+
+.recipes {
+  font-size: 2rem;
+  color: rgb(15, 15, 45);
+}
+
+.navbarsearchbar {
+  margin-left: 5rem;
+  margin-top: 1.2rem;
+  width: 20rem;
+  font-size: 1rem;
+  padding: 1rem;
+  height: 3vh;
+}
+
+.leftMenuBar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid transparent;
+    width: 29.6%;
+    height: 70vh;
+    background-color: #F7F8FA;
+    padding: 1rem;
+    gap: 2rem;
+    
+}
+
+.content{
+    display: flex;
+}
+
+.rightMenuBar{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px; 
+  background-color: #f5f5f5; 
+  border: 1px solid #ccc; 
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  /* Maintain aspect ratio and cover the container */
+  object-fit: cover; 
+}
+
+.categories{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.apetizers,.baking,.grilling,.chicken{
+    padding: 1rem;
+    width: 30%;
+    height: 10vh;
+    border: 5px solid #F7F8FA;
+    /* transition for smooth effect */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+.apetizers:hover,
+.baking:hover,
+.grilling:hover,
+.chicken:hover {
+  background-color: #3ab399; 
+  color: white; 
+}
+
+
+.suggested{
+    font-weight: bold;
+
+}
+
+.searched span{
+    color: #3ab399;
+}
+
+.suggestedRecipes{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.boiledEggs{
+    padding: 1rem;
+    width: 30%;
+    height: 10vh;
+    border: 5px solid #F7F8FA;
+}
