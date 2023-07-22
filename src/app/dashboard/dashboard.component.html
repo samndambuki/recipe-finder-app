@@ -3,7 +3,7 @@
     <div class="planlife">
       <p class="panlifeparagraph">Plan<span>life</span></p>
       <p class="heathymeals">Healthy meals, healthy life</p>
-      <div class="createNew">
+      <div class="createNew" (click)="toggleForm()">
         <p><span>+</span> Create New</p>
       </div>
     </div>
@@ -62,6 +62,35 @@
           <p>Boiled eggs</p>
         </div>
       </div>
+
+      <!-- Add ingredient form -->
+      <div class="overlay" *ngIf="showForm">
+        <form class="ingredientForm" (submit)="addIngredient()" >
+          <h2>Add New Ingredient</h2>
+          <label for="ingredientName">Name:</label>
+          <input type="text" name="ingredientName" [(ngModel)]="ingridientName" required>
+
+          <label for="quantity">Quantity:</label>
+          <input type="text" name="quantity" [(ngModel)]="quantity" required="">
+
+          <label for="unit">Unit:</label>
+          <input type="text" name="unit" [(ngModel)]="unit" required="">
+
+          <label for="category">Category:</label>
+          <select name="category" [(ngModel)]="category">
+            <option value="fruits">Fruits</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="dairy">Dairy</option>
+          </select>
+
+          <label for="notes">Notes</label>
+          <textarea name="notes" [(ngModel)]="notes"></textarea>
+
+          <button type="submit">Add ingredient</button>
+          <button type="button" (click)="cancelForm()">Cancel</button>
+        </form>
+      </div>
+
     </div>
   </div>
 </div>

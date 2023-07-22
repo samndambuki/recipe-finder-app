@@ -1,124 +1,30 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "John Doe",
-      "email": "john@example.com",
-      "password": "password123"
-    },
-    {
-      "id": 2,
-      "name": "Jane Smith",
-      "email": "jane@example.com",
-      "password": "password456"
-    },
-    {
-      "id": 3,
-      "name": "Alice Johnson",
-      "email": "alice@example.com",
-      "password": "password789"
-    },
-    {
-      "name": "sam",
-      "email": "sam@gmail.com",
-      "password": "12345",
-      "id": 4
-    },
-    {
-      "name": "dickson",
-      "email": "disckson@gmail.com",
-      "password": "12345",
-      "id": 5
-    },
-    {
-      "name": "dickson",
-      "email": "disckson@gmail.com",
-      "password": "12345",
-      "id": 6
-    },
-    {
-      "id": 7
-    },
-    {
-      "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "id": 10
-    },
-    {
-      "id": 11,
-      "name": "john",
-      "email": "john@gmail.com",
-      "password": "12345"
-    },
-    {
-      "id": 12
-    },
-    {
-      "id": 13,
-      "name": "dickson",
-      "email": "dickson@gmail.com",
-      "password": "12345"
-    },
-    {
-      "id": 14
-    },
-    {
-      "id": 15
-    },
-    {
-      "id": 16
-    },
-    {
-      "id": 17
-    },
-    {
-      "id": 18
-    },
-    {
-      "id": 19
-    },
-    {
-      "id": 20
-    },
-    {
-      "id": 21
-    },
-    {
-      "id": 22
-    },
-    {
-      "id": 23,
-      "name": "ndambuki",
-      "email": "ndambuki@gmail.com",
-      "password": "12345"
-    },
-    {
-      "id": 24,
-      "name": "jonte",
-      "email": "jonte@gmail.com",
-      "password": "12345"
-    },
-    {
       "id": 25,
       "name": "sam",
       "email": "sam@gmail.com",
       "password": "12345"
+    }
+  ],
+  "ingredients": [
+    {
+      "id": 1,
+      "name": "Tomato",
+      "quantity": "2",
+      "unit": "pcs",
+      "expirationDate": "2023-08-15",
+      "category": "vegetables",
+      "notes": "Organic tomatoes"
     },
     {
-      "id": 26,
-      "name": "sam",
-      "email": "sam@gmail.com",
-      "password": "12345"
-    },
-    {
-      "id": 27
-    },
-    {
-      "id": 28
+      "name": "Onions",
+      "quantity": "3",
+      "unit": "kshs",
+      "expirationDate": "",
+      "category": "vegetables",
+      "notes": "I use onions to cook eggs",
+      "id": 2
     }
   ]
 }
