@@ -9,6 +9,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/user.service';
 import { FormsModule } from '@angular/forms';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     SignupComponent,
     DashboardComponent,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    TimepickerModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

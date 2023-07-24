@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ingredient } from '../interfaces/ingredient.interface';
+import {  Recipe } from '../interfaces/recipe.interface';
 
 //define the injectable service
 //marks ingredient service as an injectable service making it available throughout the application
@@ -10,9 +10,10 @@ import { Ingredient } from '../interfaces/ingredient.interface';
   //metadata ensures that the service is provided at the root level
   providedIn: 'root',
 })
-export class IngredientService {
+
+export class RecipeService {
   //define the base url for API requests
-  private baseUrl = 'http://localhost:3000/ingredients';
+  private baseUrl = 'http://localhost:3000/recipes';
 
   //private parameter http of type Http Client
   //alloews the service to use http to make http requests
@@ -25,18 +26,18 @@ export class IngredientService {
   //2. data consistency - easier to iterate over a collection of objects when organized in an array
   //3. flexibility - allows us to add or remove items from the list easily. we can use array methods like filter, map, reduce
   //4. seamless integration - helps us use built in directives like *ngFor
-  getIngredients(): Observable<Ingredient[]> {
-    return this.http.get<Ingredient[]>(this.baseUrl);
+  getRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(this.baseUrl);
   }
 
   //sends a post request to add an ingredient
   //pass a parameter ingredient. expects an object that conforms to ingredient interface
   //returns an obeservable that emits an object of type ingredient
-  addIngredient(ingredient: Ingredient): Observable<Ingredient> {
+  addRecipe(recipe: Recipe): Observable<Recipe> {
     //post method sends data to server's url specified by this.baseUrl data to be sent is ingredient object
     //this.http - instance of the http service
     //ingredient - data sent to the server when creating a new ingredient
     //return  returns an observable - allows the caller of the method to handle response or errors returned by the server
-    return this.http.post<Ingredient>(this.baseUrl, ingredient);
+    return this.http.post<Recipe>(this.baseUrl, recipe);
   }
 }

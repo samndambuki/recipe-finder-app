@@ -11,7 +11,11 @@
       <p class="hello">Hello sam,</p>
       <p class="recipes">Discover Recipes</p>
       <div class="search-bar">
-        <input type="text" class="navbarsearchbar" placeholder="Search for recipes, ingredients and tags" />
+        <input
+          type="text"
+          class="navbarsearchbar"
+          placeholder="Search for recipes, ingredients and tags"
+        />
         <i class="fas fa-search search-icon"></i>
       </div>
     </div>
@@ -21,7 +25,7 @@
       <p><i class="fas fa-bars"></i>MENU</p>
       <p><i class="fas fa-home"></i>Dashboard</p>
       <p><i class="fas fa-book"></i>My recipes</p>
-  
+
       <p><i class="fas fa-user"></i>Your account</p>
       <p><i class="fas fa-cog"></i>Account</p>
       <p><i class="fas fa-sign-out-alt"></i>Logout</p>
@@ -29,7 +33,7 @@
 
     <div class="rightMenuBar">
       <div class="image">
-      <img src="assets/recipe.jpg" alt="Recipe image">
+        <img src="assets/recipe.jpg" alt="Recipe image" />
       </div>
       <p>Categories</p>
       <div class="categories">
@@ -47,7 +51,9 @@
         </div>
       </div>
       <p class="suggested">Suggested Recipes for you</p>
-      <p class="searched">Because you serached for <span>Salad Dressing</span></p>
+      <p class="searched">
+        Because you serached for <span>Salad Dressing</span>
+      </p>
       <div class="suggestedRecipes">
         <div class="boiledEggs">
           <p>Boiled eggs</p>
@@ -63,34 +69,52 @@
         </div>
       </div>
 
-      <!-- Add ingredient form -->
+      <!-- Add recipe form -->
       <div class="overlay" *ngIf="showForm">
-        <form class="ingredientForm" (submit)="addIngredient()" >
-          <h2>Add New Ingredient</h2>
-          <label for="ingredientName">Name:</label>
-          <input type="text" name="ingredientName" [(ngModel)]="ingridientName" required>
+        <form class="recipeForm" (submit)="addRecipe()">
+          <h2>Add New Recipe</h2>
+          <label for="name">Name:</label>
+          <input type="text" name="name" [(ngModel)]="name" required />
 
-          <label for="quantity">Quantity:</label>
-          <input type="text" name="quantity" [(ngModel)]="quantity" required="">
+          <label for="description">Description:</label>
+          <textarea
+            name="description"
+            [(ngModel)]="description"
+            required
+          ></textarea>
 
-          <label for="unit">Unit:</label>
-          <input type="text" name="unit" [(ngModel)]="unit" required="">
+          <label for="ingredients">Ingredients:</label>
+          <textarea
+            name="ingredients"
+            [(ngModel)]="ingredients"
+            required
+          ></textarea>
 
-          <label for="category">Category:</label>
-          <select name="category" [(ngModel)]="category">
-            <option value="fruits">Fruits</option>
-            <option value="vegetables">Vegetables</option>
-            <option value="dairy">Dairy</option>
-          </select>
+          <label for="cookingInstructions">Cooking Instructions:</label>
+          <textarea
+            name="cookingInstructions"
+            [(ngModel)]="cookingInstructions"
+            required
+          ></textarea>
 
-          <label for="notes">Notes</label>
-          <textarea name="notes" [(ngModel)]="notes"></textarea>
+          <label for="preparationTime">Preparation Time:</label>
+          <timepicker
+            name="preparationTime"
+            [(ngModel)]="preparationTime"
+            [showMeridian]="false"
+            required 
+          />
 
-          <button type="submit">Add ingredient</button>
+          <label for="servings">Servings:</label>
+          <input type="text" name="servings" [(ngModel)]="servings" required />
+
+          <label for="imageUrl">Image URL:</label>
+          <input type="text" name="imageUrl" [(ngModel)]="imageUrl" />
+
+          <button type="submit">Add Recipe</button>
           <button type="button" (click)="cancelForm()">Cancel</button>
         </form>
       </div>
-
     </div>
   </div>
 </div>
