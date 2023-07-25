@@ -1,19 +1,17 @@
 //miport the component decorator from angular core
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../interfaces/recipe.interface';
 import { FormsModule } from '@angular/forms';
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 
 //use the component decorator to define our component
 @Component({
   //define a custom html tag for our component
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule,TimepickerModule],
+  imports: [CommonModule, FormsModule],
   //define the html tag that contains the template for this component
   templateUrl: './dashboard.component.html',
   //define css styles that contain the styles for this component
@@ -21,7 +19,7 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 })
 
 //typescript class that represents our component
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   //define properties for our component and initialize them with default values
   //form to enter ingredients is initially hidden
   showForm: boolean = false;
@@ -30,29 +28,42 @@ export class DashboardComponent {
   description: string = '';
   ingredients: [] = [];
   cookingInstructions: string = '';
-  preparationTime:string = ''
-  servings:string = ''
-  imageUrl:string = ''
+  preparationTime: string = '';
+  servings: string = '';
   //no initial notes for the ingredient
   notes: string = '';
+  recipes: Recipe[] = [];
+  selectedRecipe: Recipe | undefined;
 
   //we have used dependecy injection
   //allows us to access methods and properties of Ingridient service inside our component
-  constructor(private recipeService: RecipeService,private localeService:BsLocaleService) {
-    this.localeService.use('default')
+  constructor(private recipeService: RecipeService) {}
 
+  ngOnInit(): void {
+    this.loadRecipes();
+  }
+
+  loadRecipes(): void {
+    this.recipeService.getRecipes().subscribe(
+      (recipes) => {
+        this.recipes = recipes;
+      },
+      (error) => {
+        console.log('Error fetching recipes', error);
+      }
+    );
   }
 
   //void - a function with no return value
   addRecipe(): void {
     const newRecipe: Recipe = {
+      id: 0,
       name: this.name,
       description: this.description,
       ingredients: this.ingredients,
       cookingInstructions: this.cookingInstructions,
       preparationTime: this.preparationTime,
       servings: this.servings,
-      imageUrl: this.imageUrl,
     };
 
     //method returns a observable
@@ -83,8 +94,14 @@ export class DashboardComponent {
     this.cookingInstructions = '';
     this.preparationTime = '';
     this.servings = '';
-    this.imageUrl = '';
     this.showForm = false;
-    
+  }
+
+  openRecipeDetails(recipe: Recipe): void {
+    this.selectedRecipe = recipe;
+  }
+
+  closeRecipeDetails(): void {
+    this.selectedRecipe = undefined;
   }
 }

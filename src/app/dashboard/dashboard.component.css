@@ -314,40 +314,65 @@
 
 /* end of form stylings */
 
-/* Customize the timepicker wrapper */
-.timepicker-wrapper {
-  /* Add your custom styles for the wrapper here */
+
+/* recipe details styling */
+/* recipe details styling */
+.recipe-details-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* Customize the timepicker input box */
-.timepicker-wrapper input {
-  /* Add your styles for the input box here */
-  background-color: #f7f8fa;
-  border: 1px solid #ccc;
-  color: #333;
-  font-size: 16px;
-  padding: 8px;
-  border-radius: 4px;
+.show-dialog {
+  opacity: 1;
+  visibility: visible;
 }
 
-/* Customize the timepicker dropdown */
-.timepicker-wrapper .dropdown-menu {
-  /* Add your styles for the dropdown here */
+.dialog-content {
+  padding: 20px;
   background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
 }
 
-/* Customize the timepicker buttons */
-.timepicker-wrapper .bs-chevron {
-  /* Add your styles for the chevron buttons here */
+.dialog-content h2 {
+  margin-bottom: 10px;
   color: #3ab399;
-  font-size: 20px;
 }
 
-/* Customize the timepicker selected time */
-.timepicker-wrapper .active {
-  /* Add your styles for the selected time here */
+.dialog-content p {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.dialog-content button {
   background-color: #3ab399;
   color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
+
+.dialog-content button:hover {
+  background-color: #319286;
+}
+
+
+
+

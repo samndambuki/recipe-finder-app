@@ -5,50 +5,17 @@
       "name": "sam",
       "email": "sam@gmail.com",
       "password": "12345"
-    },
-    {
-      "id": 26
-    },
-    {
-      "id": 27
-    },
-    {
-      "id": 28
-    },
-    {
-      "id": 29
-    },
-    {
-      "id": 30
     }
   ],
-  "ingredients": [
+  "recipes": [
     {
       "id": 1,
-      "name": "Tomato",
-      "quantity": "2",
-      "unit": "pcs",
-      "expirationDate": "2023-08-15",
-      "category": "vegetables",
-      "notes": "Organic tomatoes"
-    },
-    {
-      "name": "Onions",
-      "quantity": "3",
-      "unit": "kshs",
-      "expirationDate": "",
-      "category": "vegetables",
-      "notes": "I use onions to cook eggs",
-      "id": 2
-    },
-    {
-      "name": "",
-      "quantity": "",
-      "unit": "",
-      "expirationDate": "",
-      "category": "fruits",
-      "notes": "",
-      "id": 3
+      "name": "Spaghetti Carbonara",
+      "description": "Delicious pasta dish with eggs, cheese, and bacon",
+      "ingredients": "Spaghetti, eggs, Parmesan cheese, bacon, black pepper",
+      "cookingInstructions": "Cook spaghetti until al dente, whisk eggs and cheese, fry bacon until crispy, mix all together and serve hot",
+      "preparationTime": "20 minutes",
+      "servings": "4"
     }
   ]
 }

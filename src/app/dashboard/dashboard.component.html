@@ -37,19 +37,34 @@
       </div>
       <p>Categories</p>
       <div class="categories">
-        <div class="apetizers">
-          <p>Apetizers and snacks</p>
-        </div>
-        <div class="baking">
-          <p>Baking Recipes</p>
-        </div>
-        <div class="grilling">
-          <p>Grilling</p>
-        </div>
-        <div class="chicken">
-          <p>Chicken recipes</p>
+        <!-- ngFor allows you to loop through a certain condition -->
+        <div
+          class="apetizers"
+          *ngFor="let recipe of recipes"
+          (click)="openRecipeDetails(recipe)"
+        >
+          <p>{{ recipe.name }}</p>
         </div>
       </div>
+
+      <!-- pop up dialog -->
+      <div
+        class="recipe-details-dialog"
+        [ngClass]="{ 'show-dialog': selectedRecipe }"
+        (click)="closeRecipeDetails()"
+      >
+        <div class="dialog-content" (click)="$event.stopPropagation()">
+          <h2>{{ selectedRecipe?.name }}</h2>
+          <p>Description: {{ selectedRecipe?.description }}</p>
+          <p>Ingredients: {{ selectedRecipe?.ingredients }}</p>
+          <p>Cooking Instructions: {{ selectedRecipe?.cookingInstructions }}</p>
+          <p>Preparation Time: {{ selectedRecipe?.preparationTime }}</p>
+          <p>Servings: {{ selectedRecipe?.servings }}</p>
+          <!-- Add other recipe details here -->
+          <button (click)="closeRecipeDetails()">Close</button>
+        </div>
+      </div>
+
       <p class="suggested">Suggested Recipes for you</p>
       <p class="searched">
         Because you serached for <span>Salad Dressing</span>
@@ -72,7 +87,7 @@
       <!-- Add recipe form -->
       <div class="overlay" *ngIf="showForm">
         <form class="recipeForm" (submit)="addRecipe()">
-          <h2>Add New Recipe</h2>
+          <h2>Create New Recipe</h2>
           <label for="name">Name:</label>
           <input type="text" name="name" [(ngModel)]="name" required />
 
@@ -98,18 +113,15 @@
           ></textarea>
 
           <label for="preparationTime">Preparation Time:</label>
-          <timepicker
+          <input
+            type="text"
             name="preparationTime"
             [(ngModel)]="preparationTime"
-            [showMeridian]="false"
-            required 
+            required
           />
 
           <label for="servings">Servings:</label>
           <input type="text" name="servings" [(ngModel)]="servings" required />
-
-          <label for="imageUrl">Image URL:</label>
-          <input type="text" name="imageUrl" [(ngModel)]="imageUrl" />
 
           <button type="submit">Add Recipe</button>
           <button type="button" (click)="cancelForm()">Cancel</button>

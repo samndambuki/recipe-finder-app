@@ -10,5 +10,4 @@ export interface Recipe{
     cookingInstructions:string;
     preparationTime:string;
     servings:string;
-    imageUrl:string;
 }

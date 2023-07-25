@@ -1,8 +1,8 @@
 //marks the service as injectable alloes it to be povided throughout the application
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import {  Recipe } from '../interfaces/recipe.interface';
+import { Observable, map } from 'rxjs';
+import { Recipe } from '../interfaces/recipe.interface';
 
 //define the injectable service
 //marks ingredient service as an injectable service making it available throughout the application
@@ -10,7 +10,6 @@ import {  Recipe } from '../interfaces/recipe.interface';
   //metadata ensures that the service is provided at the root level
   providedIn: 'root',
 })
-
 export class RecipeService {
   //define the base url for API requests
   private baseUrl = 'http://localhost:3000/recipes';
@@ -26,8 +25,16 @@ export class RecipeService {
   //2. data consistency - easier to iterate over a collection of objects when organized in an array
   //3. flexibility - allows us to add or remove items from the list easily. we can use array methods like filter, map, reduce
   //4. seamless integration - helps us use built in directives like *ngFor
+
+  //get recipes method should return an array of recipe objects, not an observable of an array
+  //since http get method returns an observable, modify the method to subscribe to the observable and return
+  //the result as follows
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.baseUrl);
+    //method will return an Observable Recipe that emits an array of recipe objects
+    return this.http.get<Recipe[]>(this.baseUrl).pipe(
+      //map method is used to transform the http response to the desired format
+      map((response) => response)
+    );
   }
 
   //sends a post request to add an ingredient
