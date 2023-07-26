@@ -66,23 +66,14 @@
         </div>
       </div>
 
-      <p class="suggested">Suggested Recipes for you</p>
+      <p class="suggested" *ngIf="searchQuery">Suggested Recipes for you</p>
       <p class="searched" *ngIf="searchQuery">
         Because you serached for <span>{{searchQuery}}</span>
       </p>
-      <div class="suggestedRecipes" *ngFor="let recipe of recipes | search:searchQuery">
-        <div class="boiledEggs">
+      <div class="suggestedRecipes" *ngIf="searchQuery">
+        <div class="boiledEggs"  *ngFor="let recipe of recipes | search:searchQuery"  (click)="openRecipeDetails(recipe)"  >
           <p>{{recipe.name}}</p>
         </div>
-        <!-- <div class="boiledEggs">
-          <p>Boiled eggs</p>
-        </div>
-        <div class="boiledEggs">
-          <p>Boiled eggs</p>
-        </div>
-        <div class="boiledEggs">
-          <p>Boiled eggs</p>
-        </div> -->
       </div>
 
       <!-- Add recipe form -->

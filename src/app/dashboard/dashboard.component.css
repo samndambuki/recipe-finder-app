@@ -235,6 +235,12 @@
   border: 5px solid #f7f8fa;
 }
 
+.boiledEggs:hover{
+  background-color: #3ab399;
+  color: white;
+  cursor: pointer;
+}
+
 
 /* form stylings */
 .overlay {
