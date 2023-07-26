@@ -15,6 +15,7 @@
           type="text"
           class="navbarsearchbar"
           placeholder="Search for recipes, ingredients and tags"
+          [(ngModel)]="searchQuery"
         />
         <i class="fas fa-search search-icon"></i>
       </div>
@@ -66,11 +67,14 @@
       </div>
 
       <p class="suggested">Suggested Recipes for you</p>
-      <p class="searched">
-        Because you serached for <span>Salad Dressing</span>
+      <p class="searched" *ngIf="searchQuery">
+        Because you serached for <span>{{searchQuery}}</span>
       </p>
-      <div class="suggestedRecipes">
+      <div class="suggestedRecipes" *ngFor="let recipe of recipes | search:searchQuery">
         <div class="boiledEggs">
+          <p>{{recipe.name}}</p>
+        </div>
+        <!-- <div class="boiledEggs">
           <p>Boiled eggs</p>
         </div>
         <div class="boiledEggs">
@@ -78,10 +82,7 @@
         </div>
         <div class="boiledEggs">
           <p>Boiled eggs</p>
-        </div>
-        <div class="boiledEggs">
-          <p>Boiled eggs</p>
-        </div>
+        </div> -->
       </div>
 
       <!-- Add recipe form -->

@@ -5,13 +5,14 @@ import { CommonModule } from '@angular/common';
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../interfaces/recipe.interface';
 import { FormsModule } from '@angular/forms';
+import { SearchPipe } from '../pipes/search.pipe';
 
 //use the component decorator to define our component
 @Component({
   //define a custom html tag for our component
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,SearchPipe],
   //define the html tag that contains the template for this component
   templateUrl: './dashboard.component.html',
   //define css styles that contain the styles for this component
@@ -34,6 +35,7 @@ export class DashboardComponent implements OnInit {
   notes: string = '';
   recipes: Recipe[] = [];
   selectedRecipe: Recipe | undefined;
+  searchQuery:string = ''
 
   //we have used dependecy injection
   //allows us to access methods and properties of Ingridient service inside our component

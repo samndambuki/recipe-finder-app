@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/user.service';
 import { FormsModule } from '@angular/forms';
+import { SearchPipe } from './pipes/search.pipe';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     SignupComponent,
     DashboardComponent,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    SearchPipe
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
