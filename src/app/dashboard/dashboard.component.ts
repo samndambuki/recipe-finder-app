@@ -37,6 +37,9 @@ export class DashboardComponent implements OnInit {
   selectedRecipe: Recipe | undefined;
   searchQuery:string = ''
 
+  currentPage:number = 1;
+  itemsPerPage:number = 2;
+
   //we have used dependecy injection
   //allows us to access methods and properties of Ingridient service inside our component
   constructor(private recipeService: RecipeService) {}
