@@ -6,6 +6,7 @@ import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../interfaces/recipe.interface';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from '../pipes/search.pipe';
+import { Router } from '@angular/router';
 
 //use the component decorator to define our component
 @Component({
@@ -42,7 +43,12 @@ export class DashboardComponent implements OnInit {
 
   //we have used dependecy injection
   //allows us to access methods and properties of Ingridient service inside our component
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService,private router:Router) {}
+
+  logout():void{
+    localStorage.removeItem('credentials')
+    this.router.navigate(['/signin'])
+  }
 
   ngOnInit(): void {
     this.loadRecipes();
