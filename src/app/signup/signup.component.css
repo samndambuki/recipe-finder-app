@@ -90,3 +90,8 @@
   background-color: white;
   color: #3ab399;
 }
+
+.error{
+  color: red;
+  margin-top: 1rem;
+}

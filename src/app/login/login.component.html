@@ -15,7 +15,7 @@
     <!-- use *ngIf directive to conditionally show or hide this element based on truthiness of an expression -->
     <!-- in this case it is initially empty which means it will be evaluated to false and the element will be hidden -->
     <!-- we use string interpolation. if the error property contains text, it will be displayed here -->
-    <div class="error" *ngIf="">{{error}}</div>
+    <div class="error" *ngIf="error">{{error}}</div>
   </div>
   <div class="rightMenuBar">
     <div class="helloFriend">

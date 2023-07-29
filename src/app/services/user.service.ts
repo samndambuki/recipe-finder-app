@@ -1,7 +1,7 @@
 //import the necessary dependecnies
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { User } from '../interfaces/User';
 
 //marks UserService as an injectable service
@@ -40,12 +40,14 @@ export class UserService {
 
   //method which takes an email parameter of type string
   //method returns an observable<User> which is a stream of user objects
-  getUserByEmail(email: string): Observable<User> {
+  getUserByEmail(email: string): Observable<User | undefined> {
     //this line uses http property which is an instance of HttpClient to make a Http Get request
     //the generic parameter <User> is the expected response type
     //the get method is called with the following arguments
     //the url - this constructs the url by concatinating the base url with the path users
     //and the query parameter email
-    return this.http.get<User>(`${this.baseUrl}/users?email=${email}`);
+    return this.http.get<User[]>(`${this.baseUrl}/users?email=${email}`).pipe(
+      map((users: User[]) => users.find((user: User) => user.email === email))
+    )
   }
 }

@@ -20,9 +20,9 @@
       <!-- establishes conenction between the input field in the view and the corresponding property in component class -->
       <!-- when a value is entered or modified in the input field the ngModel directive automatically updates the bound property in the component class -->
       <!-- likewise if the property value is changed in the component class, the input field will reflect the updated value -->
-      <input type="text" placeholder="Name" [(ngModel)]="name" />
-      <input type="text" placeholder="Email" [(ngModel)]="email" />
-      <input type="password" placeholder="Password" [(ngModel)]="password" />
+      <input type="text" placeholder="Name" [(ngModel)]="name" required/>
+      <input type="text" placeholder="Email" [(ngModel)]="email" required email/>
+      <input type="password" placeholder="Password" [(ngModel)]="password" required />
     </div>
 
     <!-- event binding - allows you to respond to user interactions or actions such as button clicks  -->
@@ -30,5 +30,6 @@
     <!-- allows you associate functions with events triggerred by user interactions -->
       <button (click)="signUpUser()">SIGN UP</button>
     </div>
+    <div class="error" *ngIf="error">{{error}}</div>
   </div>
 </div>
