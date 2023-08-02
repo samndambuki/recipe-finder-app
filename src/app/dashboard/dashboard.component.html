@@ -121,6 +121,22 @@
           <button type="button" (click)="cancelForm()">Cancel</button>
         </form>
       </div>
+
+      <!-- edit user profile pop up-->
+      <div class="user-profile-dialog"
+      ngClass="{'show-dialog':showUserProfile}"
+      (click)="hideUserProfileDialog()"
+      >
+      <div class="dialog-content" (click)="$event.stopPropagation()">
+        <h2>User Profile</h2>
+        <!-- <p>Name : {{currentUser?.name}}</p> -->
+
+      </div>
+
+      </div>
+
     </div>
+
+
   </div>
 </div>

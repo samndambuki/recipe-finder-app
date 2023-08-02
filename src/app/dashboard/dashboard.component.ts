@@ -41,6 +41,9 @@ export class DashboardComponent implements OnInit {
   currentPage:number = 1;
   itemsPerPage:number = 2;
 
+  //edit user profile
+  showUserProfile:boolean = false;
+
   //we have used dependecy injection
   //allows us to access methods and properties of Ingridient service inside our component
   constructor(private recipeService: RecipeService,private router:Router) {}
@@ -115,4 +118,15 @@ export class DashboardComponent implements OnInit {
   closeRecipeDetails(): void {
     this.selectedRecipe = undefined;
   }
+
+  //methods to edit user profile
+  showUserProfileDialog():void{
+    this.showUserProfile = true;
+  }
+
+  hideUserProfileDialog():void{
+    this.showUserProfile = false;
+  }
+
+
 }
