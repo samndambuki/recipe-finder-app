@@ -29,7 +29,7 @@
       <p><i class="fas fa-book"></i>My recipes</p>
 
       <p><i class="fas fa-user"></i>Your account</p>
-      <p><i class="fas fa-cog"></i>Account</p>
+      <p (click)="openUserProfileDialog()"><i class="fas fa-cog"></i>Account</p>
       <p (click)="logout()"><i class="fas fa-sign-out-alt"></i>Logout</p>
     </div>
 
@@ -123,19 +123,33 @@
       </div>
 
       <!-- edit user profile pop up-->
-      <div class="user-profile-dialog"
-      ngClass="{'show-dialog':showUserProfile}"
-      (click)="hideUserProfileDialog()"
-      >
-      <div class="dialog-content" (click)="$event.stopPropagation()">
-        <h2>User Profile</h2>
-        <p>Name : {{currentUser?.name}}</p>
-        <p>Email : {{currentUser?.email}}</p>
-        
-      </div>
+      <div class="user-profile-dialog" *ngIf="showUserProfile" [ngClass]="{'show-dialog': showUserProfile}" (click)="hideUserProfileDialog()">
+        <div class="dialog-content" (click)="$event.stopPropagation()">
+          <h2>User Profile</h2>
+          <p>Name: {{ currentUser?.name }}</p>
+          <p>Email: {{ currentUser?.email }}</p>
+          <button (click)="editUserProfile()">Edit Profile</button>
+          <div class="user-details-dialog" *ngIf="editingProfile">
+            <div class="dialog-content" (click)="$event.stopPropagation()">
+              <h2>Edit User Details</h2>
+              <label for="name">Name:</label>
+              <input *ngIf="currentUser" type="text" name="name" [(ngModel)]="currentUser.name" />
 
-      </div>
+              <label for="email">Email:</label>
+              <input *ngIf="currentUser" type="text" name="email" [(ngModel)]="currentUser.email" />
 
+              <label for="email">Password:</label>
+              <input *ngIf="currentUser" type="text" name="password" [(ngModel)]="currentUser.password" />
+    
+              <!-- Add other user details inputs here -->
+    
+              <button (click)="saveUserDetails()">Save</button>
+              <button (click)="cancelEditUserProfile()">Cancel</button>
+            </div>
+          </div>
+          <button class="close-dialog-button" (click)="hideUserProfileDialog()">Close</button> <!-- Close button for the entire dialog -->
+        </div>
+      </div>
     </div>
 
 

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchPipe } from '../pipes/search.pipe';
 import { Router } from '@angular/router';
 import { User } from '../interfaces/User';
+import { UserService } from '../services/user.service';
 
 //use the component decorator to define our component
 @Component({
@@ -43,9 +44,8 @@ export class DashboardComponent implements OnInit {
   itemsPerPage:number = 2;
 
   //edit user profile
-  showUserProfile:boolean = false;
-
-  editingUserProfile:boolean = false;
+  showUserProfile: boolean = false;
+  editingProfile: boolean = false;
 
 
 
@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
 
   //we have used dependecy injection
   //allows us to access methods and properties of Ingridient service inside our component
-  constructor(private recipeService: RecipeService,private router:Router) {}
+  constructor(private recipeService: RecipeService,private router:Router,private userService:UserService) {}
 
   logout():void{
     localStorage.removeItem('credentials')
@@ -134,16 +134,6 @@ export class DashboardComponent implements OnInit {
     this.selectedRecipe = undefined;
   }
 
-  //methods to edit user profile
-  showUserProfileDialog():void{
-    this.showUserProfile = true;
-  }
-
-  hideUserProfileDialog():void{
-    this.showUserProfile = false;
-  }
-
-
 
   //method declaration 
   //:void - indicates that the method does not return any value
@@ -160,12 +150,17 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  toggleUserProfile(): void {
+    this.showUserProfile = !this.showUserProfile;
+  }
+
+
   editUserProfile():void{
-    this.editingUserProfile = true;
+    this.editingProfile = true;
   }
 
   cancelEditUserProfile():void{
-    this.editingUserProfile = false
+    this.editingProfile = false
   }
 
   saveUserProfile(): void {
@@ -173,13 +168,48 @@ export class DashboardComponent implements OnInit {
     localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
   
     // Close the edit form and refresh the view
-    this.editingUserProfile = false;
+    this.editingProfile = false;
   }
   
+  saveUserDetails(): void {
+    if (this.currentUser) {
+      // Logic to save user details goes here
+      // For example, you can update the currentUser object and save it back to localStorage
+      // localStorage.setItem('credentials', JSON.stringify(this.currentUser));
+      // this.editingProfile = false; // Exit editing mode
+      if (this.currentUser) {
+        // Logic to save user details goes here
+        this.userService.updateUserProfile(this.currentUser).subscribe(
+          (response) => {
+            console.log('User details updated successfully', response);
+            localStorage.setItem('credentials', JSON.stringify(this.currentUser));
+            this.editingProfile = false; // Exit editing mode
+          },
+          (error) => {
+            console.log('Error updating user details', error);
+          }
+        );
+      }
 
+    }
+  }
 
- 
+  // Define a method to close the user details pop-up
+  closeUserDetails(): void {
+    // Logic to close the user details pop-up goes here
+    // this.currentUser = null; // Reset the currentUser object to null to close the pop-up
+    this.showUserProfile = false;
+  }
 
+  openUserProfileDialog(): void {
+    this.loadCurrentUser()
+    this.editingProfile = false;
+    this.showUserProfile = true;
+  }
+
+  hideUserProfileDialog():void{
+    this.showUserProfile = false;
+  }
 }
 
 

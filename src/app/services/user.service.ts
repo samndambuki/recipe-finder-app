@@ -50,4 +50,10 @@ export class UserService {
       map((users: User[]) => users.find((user: User) => user.email === email))
     )
   }
+
+    // Update user profile on the server
+    updateUserProfile(user: User): Observable<User> {
+      const url = `${this.baseUrl }/users/${user.id}`;
+      return this.http.put<User>(url, user);
+    }
 }
