@@ -47,6 +47,5 @@ export class RecipeService {
     //return  returns an observable - allows the caller of the method to handle response or errors returned by the server
     return this.http.post<Recipe>(this.baseUrl, recipe);
   }
-
   
 }

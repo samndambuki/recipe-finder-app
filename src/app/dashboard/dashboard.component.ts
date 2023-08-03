@@ -44,8 +44,6 @@ export class DashboardComponent implements OnInit {
   notes: string = '';
   recipes: Recipe[] = [];
 
-  myRecipes: Recipe[] = [];
-
   selectedRecipe: Recipe | undefined;
   searchQuery: string = '';
 
@@ -57,8 +55,6 @@ export class DashboardComponent implements OnInit {
   editingProfile: boolean = false;
 
   recipeForm!: FormGroup;
-
-  showMyRecipes: boolean = false;
 
   //stores info of the current logged in user
   //null indicates there is no logged in user
@@ -95,30 +91,6 @@ export class DashboardComponent implements OnInit {
         console.log('Error fetching recipes', error);
       }
     );
-  }
-
-  loadMyRecipes(): void {
-    this.recipeService.getRecipes().subscribe(
-      (recipes) => {
-        // Filter recipes based on the currently logged-in user's ID
-        this.recipes = recipes.filter(
-          (recipe) => recipe.addedBy?.id === this.currentUser?.id
-        );
-      },
-      (error) => {
-        console.log('Error fetching recipes', error);
-      }
-    );
-  }
-
-  toggleMyRecipes(): void {
-    this.showMyRecipes = !this.showMyRecipes;
-    // this.currentRecipes();
-    if (this.showMyRecipes) {
-      this.loadMyRecipes();
-    } else {
-      this.loadRecipes();
-    }
   }
 
   //void - a function with no return value

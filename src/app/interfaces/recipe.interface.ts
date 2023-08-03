@@ -6,7 +6,6 @@ import { User } from "./User";
 //you cannot perform arithmentic operations on variables of incompatible data types (e.g adding a string and a number)
 export interface Recipe{
     //this property is optional
-    addedBy?: User; 
     id?:number;
     name:string;
     description:string;
