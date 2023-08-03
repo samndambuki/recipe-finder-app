@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="discover">
-      <p class="hello">Hello sam,</p>
+      <p class="hello">Hello {{currentUser?.name}},</p>
       <p class="recipes">Discover Recipes</p>
       <div class="search-bar">
         <input
@@ -26,7 +26,7 @@
     <div class="leftMenuBar">
       <p><i class="fas fa-bars"></i>MENU</p>
       <p><i class="fas fa-home"></i>Dashboard</p>
-      <p><i class="fas fa-book"></i>My recipes</p>
+      <p (click)="toggleMyRecipes()"><i class="fas fa-book"></i>My recipes</p>
 
       <p><i class="fas fa-user"></i>Your account</p>
       <p (click)="openUserProfileDialog()"><i class="fas fa-cog"></i>Account</p>
@@ -43,7 +43,7 @@
         <!-- ngFor allows you to loop through a certain condition -->
         <div
           class="apetizers"
-          *ngFor="let recipe of recipes"
+          *ngFor="let recipe of (showMyRecipes ? myRecipes : recipes)"
           (click)="openRecipeDetails(recipe)"
         >
           <p>{{ recipe.name }}</p>

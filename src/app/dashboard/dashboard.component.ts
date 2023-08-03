@@ -4,7 +4,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../interfaces/recipe.interface';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { SearchPipe } from '../pipes/search.pipe';
 import { Router } from '@angular/router';
 import { User } from '../interfaces/User';
@@ -15,7 +21,7 @@ import { UserService } from '../services/user.service';
   //define a custom html tag for our component
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule,SearchPipe,ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, SearchPipe, ReactiveFormsModule],
   //define the html tag that contains the template for this component
   templateUrl: './dashboard.component.html',
   //define css styles that contain the styles for this component
@@ -37,43 +43,48 @@ export class DashboardComponent implements OnInit {
   //no initial notes for the ingredient
   notes: string = '';
   recipes: Recipe[] = [];
-  selectedRecipe: Recipe | undefined;
-  searchQuery:string = ''
 
-  currentPage:number = 1;
-  itemsPerPage:number = 2;
+  myRecipes: Recipe[] = [];
+
+  selectedRecipe: Recipe | undefined;
+  searchQuery: string = '';
+
+  currentPage: number = 1;
+  itemsPerPage: number = 2;
 
   //edit user profile
   showUserProfile: boolean = false;
   editingProfile: boolean = false;
 
+  recipeForm!: FormGroup;
 
-  recipeForm!:FormGroup;
-
+  showMyRecipes: boolean = false;
 
   //stores info of the current logged in user
   //null indicates there is no logged in user
   // = null is the initial value assigned to currentUser
   //by default when component is initialized there is no logged in user so value is set to null
-  currentUser:User | null = null;
-
+  currentUser: User | null = null;
 
   //we have used dependecy injection
   //allows us to access methods and properties of Ingridient service inside our component
-  constructor(private recipeService: RecipeService,private router:Router,private userService:UserService,
-    private formBuilder:FormBuilder) {}
+  constructor(
+    private recipeService: RecipeService,
+    private router: Router,
+    private userService: UserService,
+    private formBuilder: FormBuilder
+  ) {}
 
-  logout():void{
-    localStorage.removeItem('credentials')
-    this.router.navigate(['/signin'])
+  logout(): void {
+    localStorage.removeItem('credentials');
+    this.router.navigate(['/signin']);
   }
 
   ngOnInit(): void {
     this.loadRecipes();
     this.loadCurrentUser();
-    this.createRecipeForm(); 
+    this.createRecipeForm();
   }
-
 
   loadRecipes(): void {
     this.recipeService.getRecipes().subscribe(
@@ -84,6 +95,30 @@ export class DashboardComponent implements OnInit {
         console.log('Error fetching recipes', error);
       }
     );
+  }
+
+  loadMyRecipes(): void {
+    this.recipeService.getRecipes().subscribe(
+      (recipes) => {
+        // Filter recipes based on the currently logged-in user's ID
+        this.recipes = recipes.filter(
+          (recipe) => recipe.addedBy?.id === this.currentUser?.id
+        );
+      },
+      (error) => {
+        console.log('Error fetching recipes', error);
+      }
+    );
+  }
+
+  toggleMyRecipes(): void {
+    this.showMyRecipes = !this.showMyRecipes;
+    // this.currentRecipes();
+    if (this.showMyRecipes) {
+      this.loadMyRecipes();
+    } else {
+      this.loadRecipes();
+    }
   }
 
   //void - a function with no return value
@@ -98,7 +133,7 @@ export class DashboardComponent implements OnInit {
         preparationTime: this.recipeForm.value.preparationTime,
         servings: this.recipeForm.value.servings,
       };
-  
+
       this.recipeService.addRecipe(newRecipe).subscribe(
         (response) => {
           console.log('Recipe added successfully', response);
@@ -116,7 +151,7 @@ export class DashboardComponent implements OnInit {
       this.recipeForm.markAllAsTouched();
     }
   }
-  
+
   toggleForm(): void {
     console.log('toggle form clicked');
 
@@ -142,19 +177,18 @@ export class DashboardComponent implements OnInit {
     this.selectedRecipe = undefined;
   }
 
-
-  //method declaration 
+  //method declaration
   //:void - indicates that the method does not return any value
-  loadCurrentUser():void{
-    //retrieves value associated with the key credentials from local storage 
-    const userJson = localStorage.getItem('credentials')
+  loadCurrentUser(): void {
+    //retrieves value associated with the key credentials from local storage
+    const userJson = localStorage.getItem('credentials');
 
     //checks if userJson variable is null or undefined
     //checks if there is user data stored in local storage
-    if(userJson){
+    if (userJson) {
       //prepopulates the current user property
       //json.parse converts string to object
-      this.currentUser = JSON.parse(userJson)
+      this.currentUser = JSON.parse(userJson);
     }
   }
 
@@ -162,23 +196,22 @@ export class DashboardComponent implements OnInit {
     this.showUserProfile = !this.showUserProfile;
   }
 
-
-  editUserProfile():void{
+  editUserProfile(): void {
     this.editingProfile = true;
   }
 
-  cancelEditUserProfile():void{
-    this.editingProfile = false
+  cancelEditUserProfile(): void {
+    this.editingProfile = false;
   }
 
   saveUserProfile(): void {
     // Save the updated user profile to local storage
     localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-  
+
     // Close the edit form and refresh the view
     this.editingProfile = false;
   }
-  
+
   saveUserDetails(): void {
     if (this.currentUser) {
       // Logic to save user details goes here
@@ -190,7 +223,10 @@ export class DashboardComponent implements OnInit {
         this.userService.updateUserProfile(this.currentUser).subscribe(
           (response) => {
             console.log('User details updated successfully', response);
-            localStorage.setItem('credentials', JSON.stringify(this.currentUser));
+            localStorage.setItem(
+              'credentials',
+              JSON.stringify(this.currentUser)
+            );
             this.editingProfile = false; // Exit editing mode
           },
           (error) => {
@@ -198,7 +234,6 @@ export class DashboardComponent implements OnInit {
           }
         );
       }
-
     }
   }
 
@@ -210,12 +245,12 @@ export class DashboardComponent implements OnInit {
   }
 
   openUserProfileDialog(): void {
-    this.loadCurrentUser()
+    this.loadCurrentUser();
     this.editingProfile = false;
     this.showUserProfile = true;
   }
 
-  hideUserProfileDialog():void{
+  hideUserProfileDialog(): void {
     this.showUserProfile = false;
   }
 
@@ -229,12 +264,7 @@ export class DashboardComponent implements OnInit {
       servings: ['', Validators.required],
     });
   }
-
-
-
-
 }
-
 
 // const jsonString = '{"name":"Sam","age":22,"city":"Nyeri"}';
 // const parsedObject  = JSON.parse(jsonString)
