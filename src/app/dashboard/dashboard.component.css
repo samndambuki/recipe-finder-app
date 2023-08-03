@@ -472,3 +472,12 @@
 .user-details-dialog button.cancel-button:hover {
   background-color: #aaa;
 }
+
+
+.validation-message{
+  color: red;
+}
+
+.error-message{
+  color: red;
+}
