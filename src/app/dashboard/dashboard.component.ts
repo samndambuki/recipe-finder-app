@@ -7,6 +7,7 @@ import { Recipe } from '../interfaces/recipe.interface';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from '../pipes/search.pipe';
 import { Router } from '@angular/router';
+import { User } from '../interfaces/User';
 
 //use the component decorator to define our component
 @Component({
@@ -44,6 +45,18 @@ export class DashboardComponent implements OnInit {
   //edit user profile
   showUserProfile:boolean = false;
 
+  editingUserProfile:boolean = false;
+
+
+
+
+  //stores info of the current logged in user
+  //null indicates there is no logged in user
+  // = null is the initial value assigned to currentUser
+  //by default when component is initialized there is no logged in user so value is set to null
+  currentUser:User | null = null;
+
+
   //we have used dependecy injection
   //allows us to access methods and properties of Ingridient service inside our component
   constructor(private recipeService: RecipeService,private router:Router) {}
@@ -55,7 +68,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadRecipes();
+    this.loadCurrentUser();
   }
+
 
   loadRecipes(): void {
     this.recipeService.getRecipes().subscribe(
@@ -129,4 +144,48 @@ export class DashboardComponent implements OnInit {
   }
 
 
+
+  //method declaration 
+  //:void - indicates that the method does not return any value
+  loadCurrentUser():void{
+    //retrieves value associated with the key credentials from local storage 
+    const userJson = localStorage.getItem('credentials')
+
+    //checks if userJson variable is null or undefined
+    //checks if there is user data stored in local storage
+    if(userJson){
+      //prepopulates the current user property
+      //json.parse converts string to object
+      this.currentUser = JSON.parse(userJson)
+    }
+  }
+
+  editUserProfile():void{
+    this.editingUserProfile = true;
+  }
+
+  cancelEditUserProfile():void{
+    this.editingUserProfile = false
+  }
+
+  saveUserProfile(): void {
+    // Save the updated user profile to local storage
+    localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+  
+    // Close the edit form and refresh the view
+    this.editingUserProfile = false;
+  }
+  
+
+
+ 
+
 }
+
+
+// const jsonString = '{"name":"Sam","age":22,"city":"Nyeri"}';
+// const parsedObject  = JSON.parse(jsonString)
+
+// console.log(parsedObject.name)
+// console.log(parsedObject.age)
+// console.log(parsedObject.city)
