@@ -16,10 +16,10 @@ exec('json-server --watch db.json', (error, stdout, stderr) => {
   console.log(`json-server is running: ${stdout}`);
 });
 
-// Serve the Angular app's 'index.html' for all other routes
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
+// Serve only the static files form the dist directory
+app.use(express.static(__dirname + '/dist/frontend'));
+app.get('/*', function(req,res) 
+{ res.sendFile(path.join(__dirname+'/dist/frontend/index.html'));}); 
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
