@@ -1,16 +1,10 @@
-const jsonServer = require('json-server');
-const server = jsonServer.create();
-const router = jsonServer.router('db.json');
-const middlewares = jsonServer.defaults();
+const { exec } = require('child_process');
 
-// Set default middlewares (logger, static, cors)
-server.use(middlewares);
-
-// Use default router
-server.use(router);
-
-const port = process.env.PORT || 3000;
-
-server.listen(port, () => {
-  console.log(`JSON Server is running on port ${port}`);
+// Run json-server using the correct command
+exec('json-server --watch db.json', (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Error running json-server: ${error}`);
+    return;
+  }
+  console.log(`json-server is running: ${stdout}`);
 });
