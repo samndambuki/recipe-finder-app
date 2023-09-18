@@ -14,7 +14,7 @@ import { User } from '../interfaces/User';
 export class UserService {
   //stores base Url for the api
   // private baseUrl = 'http://localhost:3000';
-  private baseUrl = 'http://angular-recipe-finder-app-a68fcba96040.herokuapp.com';
+  private baseUrl = 'https://angular-recipe-finder-app-a68fcba96040.herokuapp.com';
 
   //HttpClient is injected as a dependency
   constructor(private http: HttpClient) {}

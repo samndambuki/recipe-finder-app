@@ -14,7 +14,7 @@ export class RecipeService {
   //define the base url for API requests
   // private baseUrl = 'http://localhost:3000/recipes';
 
-  private baseUrl = 'http://angular-recipe-finder-app-a68fcba96040.herokuapp.com/recipes';
+  private baseUrl = 'https://angular-recipe-finder-app-a68fcba96040.herokuapp.com/recipes';
 
   //private parameter http of type Http Client
   //alloews the service to use http to make http requests
